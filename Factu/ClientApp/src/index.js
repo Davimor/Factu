@@ -7,6 +7,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -14,10 +15,10 @@ const root = createRoot(rootElement);
 root.render(
     <BrowserRouter basename={baseUrl}>
         <GoogleOAuthProvider clientId="5917549423-ruhp07ocpophh0najp3ijdkgjmdtcfcc.apps.googleusercontent.com">
-            <App  />
+            <App />
         </GoogleOAuthProvider>
-    
-  </BrowserRouter>);
+
+    </BrowserRouter>);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
