@@ -16,6 +16,12 @@ namespace DB.Models
         [StringLength(200)]
         public string Name { get; set; }
         [StringLength(200)]
+        public string Apellido { get; set; }
+        [StringLength(200)]
+        public string Fulllname { get; set; }
+        [StringLength(200)]
         public string Email { get; set; }
+        public List<Loggins> Loggins { get; set; } = new List<Loggins>();
+
     }
 }

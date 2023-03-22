@@ -17,3 +17,7 @@ export class Layout extends Component {
         );
     }
 }
+
+Layout.propTypes = {
+    setToken: PropTypes.func.isRequired
+};

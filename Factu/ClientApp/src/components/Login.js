@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -8,14 +8,29 @@ export const Login = ({ setToken }) => {
 
     const navigate = useNavigate();
 
-    const login = useGoogleLogin({
-        onSuccess: response => {
-            localStorage.setItem('userInfo', JSON.stringify(response));
-            navigate("/");
+    const setLogin = async (response) => {
+        console.log(response);
+
+        const apires = await fetch("/api/user/Login?access_token=" + response.access_token);
+        
+        if (apires.ok) {
+            const data = await apires.json();
+            localStorage.setItem('userInfo', JSON.stringify(response.access_token));
             setToken(response.access_token);
         }
-    })
+    }
 
+    const login = useGoogleLogin({
+        onSuccess: response => {
+            setLogin(response);
+        }
+    });
+
+    useEffect(() => {
+        if (localStorage.getItem('userInfo') != null) {
+            setToken(localStorage.getItem('userInfo'));
+        }
+    });
 
     return (<div>
         <section className="vh-100">

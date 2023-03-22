@@ -12,19 +12,19 @@ function App() {
 
     if (!token) {
         return <Login setToken={setToken} />
+    } else {
+        return (
+            <Layout setToken={setToken}>
+                <Routes>
+                    {AppRoutes.map((route, index) => {
+                        const { element, ...rest } = route;
+                        return (element !== 'Login') ? <Route key={index} {...rest} element={element} /> : '';
+                        /*return <Route key={index} {...rest} element={element} /> ;*/
+                    })}
+                </Routes>
+            </Layout>
+        );
     }
-
-    return (
-        <Layout setToken={setToken}>
-            <Routes>
-                {AppRoutes.map((route, index) => {
-                    const { element, ...rest } = route;
-                    return (element !== 'Login') ? <Route key={index} {...rest} element={element} /> : '';
-                    /*return <Route key={index} {...rest} element={element} /> ;*/
-                })}
-            </Routes>
-        </Layout>
-    );
 }
 
 

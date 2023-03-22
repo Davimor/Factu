@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import PropTypes from 'prop-types';
+import { googleLogout } from '@react-oauth/google';
 
 
 
@@ -25,7 +27,8 @@ export class NavMenu extends Component {
 
     logout() {
         localStorage.removeItem('userInfo');
-        this.props.setToken(null)
+        this.props.setToken(null);
+        googleLogout();
     }
 
     render() {
@@ -55,3 +58,8 @@ export class NavMenu extends Component {
         );
     }
 }
+
+
+NavMenu.propTypes = {
+    setToken: PropTypes.func.isRequired
+};

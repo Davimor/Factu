@@ -17,6 +17,7 @@ namespace DB.Data
         {
             modelBuilder.Entity<Factura>().ToTable(nameof(Factura));
             modelBuilder.Entity<User>().ToTable(nameof(User));
+            modelBuilder.Entity<Loggins>().ToTable(nameof(Loggins));
         }
     }
 }
