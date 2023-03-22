@@ -6,7 +6,7 @@ export class Home extends Component {
   render() {
     return (
       <div>
-            <h4>Facturación</h4>
+            <h4>Dashboard</h4>
        </div>
     );
   }
