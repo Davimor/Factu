@@ -1,6 +1,6 @@
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
-import { Counter } from "./components/Counter";
+import { Datos } from "./components/Datos";
 
 const AppRoutes = [
     {
@@ -8,8 +8,8 @@ const AppRoutes = [
         element: <Home />
     },
     {
-        path: '/counter',
-        element: <Counter />
+        path: '/datos',
+        element: <Datos />
     },
     {
         path: '/login',

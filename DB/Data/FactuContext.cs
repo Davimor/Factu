@@ -12,12 +12,14 @@ namespace DB.Data
 
         public DbSet<Factura> Facturas { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<EntidadesBancarias> EntidadesBancarias { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Factura>().ToTable(nameof(Factura));
             modelBuilder.Entity<User>().ToTable(nameof(User));
             modelBuilder.Entity<Loggins>().ToTable(nameof(Loggins));
+            modelBuilder.Entity<EntidadesBancarias>().ToTable(nameof(EntidadesBancarias));
         }
     }
 }

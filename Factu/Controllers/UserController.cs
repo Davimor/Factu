@@ -36,7 +36,7 @@ namespace Factu.Controllers
             User loggedUser = null;
             if (res != null)
             {
-                loggedUser = new User() { Fulllname = res["name"].ToString(), Email = res["email"].ToString(), Name = res["given_name"].ToString(), Apellido = res["family_name"].ToString() };
+                loggedUser = new User() { Fullname = res["name"].ToString(), Email = res["email"].ToString(), Name = res["given_name"].ToString(), Apellido = res["family_name"].ToString() };
             }
 
             if (loggedUser != null)

@@ -20,7 +20,7 @@ namespace DB.Migrations
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "Fulllname",
+                name: "Fullname",
                 table: "User",
                 type: "nvarchar(200)",
                 maxLength: 200,
@@ -64,7 +64,7 @@ namespace DB.Migrations
                 table: "User");
 
             migrationBuilder.DropColumn(
-                name: "Fulllname",
+                name: "Fullname",
                 table: "User");
         }
     }

@@ -18,7 +18,7 @@ export const Login = () => {
                 Email: data.email,
                 Name: data.name,
                 Apellido: data.apellido,
-                Fulllname: data.fulllname,
+                Fullname: data.fullname,
                 Logged: true,
                 Token: access_token
             });

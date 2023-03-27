@@ -29,7 +29,15 @@ try
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<FactuContext>();
-        context.Database.Migrate();
+        try
+        {
+            logger.Info("Cadena: " + context.Database.GetConnectionString());
+            context.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            logger.Error(ex);
+        }
     }
 
     // Configure the HTTP request pipeline.

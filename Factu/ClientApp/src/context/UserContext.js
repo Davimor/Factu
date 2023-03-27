@@ -5,7 +5,7 @@ export const UserContext = createContext({
     Email: "",
     Name: "",
     Apellido: "",
-    Fulllname: "",
+    Fullname: "",
     Logged: false,
     Token: ""
 });

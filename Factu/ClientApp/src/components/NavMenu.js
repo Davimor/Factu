@@ -1,8 +1,7 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-import PropTypes from 'prop-types';
 import { googleLogout } from '@react-oauth/google';
 import { UserContext } from '../context/UserContext';
 
@@ -24,7 +23,7 @@ export const NavMenu = () => {
             Email: "",
             Name: "",
             Apellido: "",
-            Fulllname: "",
+            Fullname: "",
             Logged: false,
             Token: ""
         });
@@ -42,10 +41,10 @@ export const NavMenu = () => {
                             <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                            <NavLink tag={Link} className="text-dark" to="/datos">Datos</NavLink>
                         </NavItem>
                         <NavItem style={{ 'display': 'inline' }}>
-                            <NavLink tag={Link} className="text-dark" >{user.Email} <a href="#" className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></a></NavLink>
+                            <NavLink tag={Link} className="text-dark" >{user.Email} <span className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></span></NavLink>
                         </NavItem>
                     </ul>
                 </Collapse>
