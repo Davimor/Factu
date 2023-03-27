@@ -1,62 +1,57 @@
-import React, { Component } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import PropTypes from 'prop-types';
 import { googleLogout } from '@react-oauth/google';
+import { UserContext } from '../context/UserContext';
 
 
 
-export class NavMenu extends Component {
-    static displayName = NavMenu.name;
+export const NavMenu = () => {
 
-    constructor(props) {
-        super(props);
+    const { user, setUser } = useContext(UserContext);
+    const [collapsed, setCollapsed] = useState(true);
 
-        this.toggleNavbar = this.toggleNavbar.bind(this);
-        this.state = {
-            collapsed: true
-        };
-    }
+    const toggleNavbar = () => {
+        setCollapsed(!collapsed);
+    };
 
-    toggleNavbar() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    }
-
-    logout() {
+    const logout = () => {
         localStorage.removeItem('userInfo');
-        this.props.setToken(null);
+        setUser({
+            Id: null,
+            Email: "",
+            Name: "",
+            Apellido: "",
+            Fulllname: "",
+            Logged: false,
+            Token: ""
+        });
         googleLogout();
     }
 
-    render() {
-        return (
-            <header>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-                    <NavbarBrand tag={Link} to="/">{`Dakal`}</NavbarBrand>
-                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                        <ul className="navbar-nav flex-grow">
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" onClick={() => this.logout()}>Logout</NavLink>
-                            </NavItem>
-                        </ul>
-                    </Collapse>
-                </Navbar>
-            </header>
-        );
-    }
+    return (
+        <header>
+            <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
+                <NavbarBrand tag={Link} to="/">{`Dakal`}</NavbarBrand>
+                <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+                <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
+                    <ul className="navbar-nav flex-grow">
+                        <NavItem>
+                            <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                        </NavItem>
+                        <NavItem style={{ 'display': 'inline' }}>
+                            <NavLink tag={Link} className="text-dark" >{user.Email} <a href="#" className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></a></NavLink>
+                        </NavItem>
+                    </ul>
+                </Collapse>
+            </Navbar>
+        </header>
+    );
+
 }
 
-
-NavMenu.propTypes = {
-    setToken: PropTypes.func.isRequired
-};

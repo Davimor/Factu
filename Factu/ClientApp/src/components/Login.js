@@ -1,40 +1,49 @@
-﻿import React, { Component, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+﻿import React, { Component, useContext, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useGoogleLogin } from '@react-oauth/google';
+import { UserContext } from '../context/UserContext';
 
 
-export const Login = ({ setToken }) => {
+export const Login = () => {
 
-    const navigate = useNavigate();
+    const { user, setUser } = useContext(UserContext);
 
-    const setLogin = async (response) => {
-        console.log(response);
+    const setLogin = async (access_token) => {
 
-        const apires = await fetch("/api/user/Login?access_token=" + response.access_token);
-        
+        const apires = await fetch("/api/user/Login?access_token=" + access_token);
+
         if (apires.ok) {
             const data = await apires.json();
-            localStorage.setItem('userInfo', JSON.stringify(response.access_token));
-            setToken(response.access_token);
+            setUser({
+                Id: data.id,
+                Email: data.email,
+                Name: data.name,
+                Apellido: data.apellido,
+                Fulllname: data.fulllname,
+                Logged: true,
+                Token: access_token
+            });
+            localStorage.setItem('userInfo', access_token);
         }
     }
 
     const login = useGoogleLogin({
         onSuccess: response => {
-            setLogin(response);
+            setLogin(response.access_token);
         }
     });
 
     useEffect(() => {
         if (localStorage.getItem('userInfo') != null) {
-            setToken(localStorage.getItem('userInfo'));
+            setLogin(localStorage.getItem('userInfo'));
         }
     });
 
     return (<div>
         <section className="vh-100">
             <div className="container py-5 h-100">
+                <p>{user.Logged}</p>
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
                         <img src={'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'} className="img-fluid" />
@@ -50,6 +59,3 @@ export const Login = ({ setToken }) => {
     </div>);
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-};
