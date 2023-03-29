@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DB.Models
 {
-    public class EntidadesBancarias
+    public class Entidad
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,5 +16,17 @@ namespace DB.Models
         [Required]
         [StringLength(500)]
         public string Name { get; set; } = "";
+        [Required]
+        [StringLength(20)]
+        public string IdFiscal { get; set; } = "";
+        [Required]
+        [StringLength(200)]
+        public string Direccion { get; set; } = "";
+        [Required]
+        [StringLength(200)]
+        public string EntidadBancaria { get; set; } = "";
+        [Required]
+        [StringLength(20), MinLength(20)]
+        public string CCC { get; set; } = "";
     }
 }

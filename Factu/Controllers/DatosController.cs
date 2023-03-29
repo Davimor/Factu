@@ -1,5 +1,7 @@
 ﻿using DB.Data;
+using DB.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Factu.Controllers
 {
@@ -24,5 +26,33 @@ namespace Factu.Controllers
 
             return StatusCode(StatusCodes.Status200OK, ret);
         }
+
+        [HttpGet]
+        [Route("GetDatos")]
+        public IActionResult GetDatos()
+        {
+            var ret = _context.Entidades.FirstOrDefault();
+
+            return StatusCode(StatusCodes.Status200OK, ret);
+        }
+
+        [HttpPost]
+        [Route("SetDatos")]
+        public IActionResult SetDatos(Entidad nueva)
+        {
+
+            //var nueva = JsonConvert.DeserializeObject<Entidad>(obj.ToString());
+            var ret = _context.Entidades.First();
+            ret.Name = nueva.Name;
+            ret.IdFiscal = nueva.IdFiscal;
+            ret.Direccion = nueva.Direccion;
+            ret.CCC = nueva.CCC;
+            ret.EntidadBancaria = nueva.EntidadBancaria;
+
+            _context.SaveChanges();
+
+            return StatusCode(StatusCodes.Status200OK, ret);
+        }
+
     }
 }

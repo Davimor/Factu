@@ -17,16 +17,7 @@ export const NavMenu = () => {
     };
 
     const logout = () => {
-        localStorage.removeItem('userInfo');
-        setUser({
-            Id: null,
-            Email: "",
-            Name: "",
-            Apellido: "",
-            Fullname: "",
-            Logged: false,
-            Token: ""
-        });
+        setUser({});
         googleLogout();
     }
 
@@ -44,7 +35,8 @@ export const NavMenu = () => {
                             <NavLink tag={Link} className="text-dark" to="/datos">Datos</NavLink>
                         </NavItem>
                         <NavItem style={{ 'display': 'inline' }}>
-                            <NavLink tag={Link} className="text-dark" >{user.Email} <span className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></span></NavLink>
+                            <NavLink tag={Link} className="text-dark dropdown" >{user.Email} <span className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></span></NavLink>
+
                         </NavItem>
                     </ul>
                 </Collapse>

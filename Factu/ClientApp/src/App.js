@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import { Layout } from './components/Layout';
@@ -10,6 +10,15 @@ import './custom.css';
 function App() {
 
     const [user, setUser] = useState({});
+
+    useEffect(() => {
+        //Al cargar complemento
+        setUser(JSON.parse(localStorage.getItem('userInfo')));
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('userInfo', JSON.stringify(user));
+    }, [user]);
 
     if (!user.Logged) {
         return (
