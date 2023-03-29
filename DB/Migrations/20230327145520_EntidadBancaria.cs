@@ -10,10 +10,10 @@ namespace DB.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Fulllname",
-                table: "User",
-                newName: "Fullname");
+            //migrationBuilder.RenameColumn(
+            //    name: "Fulllname",
+            //    table: "User",
+            //    newName: "Fullname");
 
             migrationBuilder.CreateTable(
                 name: "EntidadesBancarias",
@@ -35,10 +35,10 @@ namespace DB.Migrations
             migrationBuilder.DropTable(
                 name: "EntidadesBancarias");
 
-            migrationBuilder.RenameColumn(
-                name: "Fullname",
-                table: "User",
-                newName: "Fulllname");
+            //migrationBuilder.RenameColumn(
+            //    name: "Fullname",
+            //    table: "User",
+            //    newName: "Fulllname");
         }
     }
 }

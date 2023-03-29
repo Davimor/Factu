@@ -40,9 +40,11 @@ namespace Factu.Controllers
         [Route("SetDatos")]
         public IActionResult SetDatos(Entidad nueva)
         {
-
-            //var nueva = JsonConvert.DeserializeObject<Entidad>(obj.ToString());
-            var ret = _context.Entidades.First();
+            var ret = _context.Entidades.FirstOrDefault();
+            if (ret == null) {
+                ret = new Entidad();
+                _context.Entidades.Add(ret);
+            }
             ret.Name = nueva.Name;
             ret.IdFiscal = nueva.IdFiscal;
             ret.Direccion = nueva.Direccion;
