@@ -46,10 +46,10 @@ namespace Factu.Controllers
                 {
                     _context.Users.Add(loggedUser);
                     _logger.LogInformation($"Nuevo usuario: {loggedUser.Email}");
-                    dbUser = _context.Users.Where(x => x.Email == loggedUser.Email).FirstOrDefault();
+                    dbUser = _context.Users.Local.Where(x => x.Email == loggedUser.Email).FirstOrDefault();
                 }
 
-                dbUser.Loggins.Add(new Loggins { DateAccess=DateTime.Now});
+                dbUser.Loggins.Add(new Loggins { DateAccess = DateTime.Now });
                 _logger.LogTrace($"Nuevo login: {loggedUser.Email}");
                 _context.SaveChanges();
                 

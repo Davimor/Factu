@@ -4,6 +4,7 @@ using DB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DB.Migrations
 {
     [DbContext(typeof(FactuContext))]
-    partial class FactuContextModelSnapshot : ModelSnapshot
+    [Migration("20230329133711_ClasesBase")]
+    partial class ClasesBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -333,16 +336,16 @@ namespace DB.Migrations
                     b.Navigation("Tratamiento");
                 });
 
-            modelBuilder.Entity("DB.Models.Factura", b =>
-                {
-                    b.HasOne("DB.Models.Cliente", "ClienteId")
-                        .WithMany()
-                        .HasForeignKey("ClienteIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            //modelBuilder.Entity("DB.Models.Factura", b =>
+            //    {
+            //        b.HasOne("DB.Models.Cliente", "ClienteId")
+            //            .WithMany()
+            //            .HasForeignKey("ClienteIdId")
+            //            .OnDelete(DeleteBehavior.Cascade)
+            //            .IsRequired();
 
-                    b.Navigation("ClienteId");
-                });
+            //        b.Navigation("ClienteId");
+            //    });
 
             modelBuilder.Entity("DB.Models.Loggins", b =>
                 {

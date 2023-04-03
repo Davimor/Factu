@@ -34,6 +34,9 @@ export const NavMenu = () => {
                         <NavItem>
                             <NavLink tag={Link} className="text-dark" to="/datos">Datos</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} className="text-dark" to="/client">Clientes</NavLink>
+                        </NavItem>
                         <NavItem style={{ 'display': 'inline' }}>
                             <NavLink tag={Link} className="text-dark dropdown" >{user.Email} <span className="text-dark" onClick={() => logout()}><small>(Cerrar Sesion)</small></span></NavLink>
 

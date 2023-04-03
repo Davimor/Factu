@@ -1,6 +1,7 @@
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Datos } from "./components/Datos";
+import { Clientes } from "./components/Clientes";
 
 const AppRoutes = [
     {
@@ -10,6 +11,9 @@ const AppRoutes = [
     {
         path: '/datos',
         element: <Datos />
+    }, {
+        path: '/client',
+        element: <Clientes />
     },
     {
         path: '/login',
